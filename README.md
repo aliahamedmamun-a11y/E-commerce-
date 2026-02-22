@@ -1,2 +1,166 @@
-# E-commerce-
-This is My test website 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mamun - Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            background:#111;
+            color:white;
+            line-height:1.6;
+        }
+
+        header{
+            background:#f4a62a;
+            padding:20px;
+            text-align:center;
+            font-size:28px;
+            font-weight:bold;
+            color:#111;
+        }
+
+        section{
+            padding:40px 10%;
+        }
+
+        h2{
+            margin-bottom:20px;
+            color:#f4a62a;
+        }
+
+        .card{
+            background:#1c1c1c;
+            padding:20px;
+            margin-bottom:20px;
+            border-radius:10px;
+        }
+
+        ul{
+            list-style:none;
+        }
+
+        ul li{
+            padding:5px 0;
+        }
+
+        .skills span{
+            display:inline-block;
+            background:#f4a62a;
+            color:#111;
+            padding:5px 10px;
+            border-radius:20px;
+            margin:5px;
+            font-size:14px;
+        }
+
+        footer{
+            text-align:center;
+            padding:20px;
+            background:#000;
+            margin-top:30px;
+        }
+
+        .btn{
+            display:inline-block;
+            margin-top:10px;
+            padding:8px 15px;
+            background:#f4a62a;
+            color:#111;
+            text-decoration:none;
+            border-radius:5px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    Mamun | Full Stack Web Developer
+</header>
+
+<section>
+    <h2>🎓 Education</h2>
+
+    <div class="card">
+        <p><strong>B.Sc.</strong> - Govt. Tularam College (National University)</p>
+        <p>CGPA: 2.63 (54.5%) | Year: 2025</p>
+    </div>
+
+    <div class="card">
+        <p><strong>H.S.C (Science)</strong> - Dhaka Board</p>
+        <p>GPA: 2.67 (53.4%) | Year: 2019</p>
+    </div>
+
+    <div class="card">
+        <p><strong>S.S.C (Science)</strong> - Dhaka Board</p>
+        <p>GPA: 4.18 (83.6%) | Year: 2017</p>
+    </div>
+</section>
+
+<section>
+    <h2>💻 Experience</h2>
+
+    <div class="card">
+        <p><strong>Website Developer</strong> (2017 - Present)</p>
+
+        <ul>
+            <li>Programming: PHP, JavaScript</li>
+            <li>Frameworks: Laravel, Node.js</li>
+            <li>Frontend: HTML5, CSS3, Tailwind, Bootstrap</li>
+            <li>Database: MySQL</li>
+            <li>CMS: WordPress</li>
+            <li>Tools: REST API, Git, Responsive Design</li>
+        </ul>
+    </div>
+</section>
+
+<section>
+    <h2>⭐ Skills</h2>
+    <div class="skills">
+        <span>Layout Design</span>
+        <span>Web Design</span>
+        <span>Digital Imaging</span>
+        <span>Print Production</span>
+    </div>
+</section>
+
+<section>
+    <h2>🌟 Professional Strengths</h2>
+
+    <div class="card">
+        <ul>
+            <li>Strong understanding of product quality standards</li>
+            <li>Hands-on experience in web development & deployment</li>
+            <li>Strong analytical and problem-solving skills</li>
+            <li>High attention to detail</li>
+            <li>Good team collaboration</li>
+            <li>Meet deadlines efficiently</li>
+        </ul>
+    </div>
+</section>
+
+<section>
+    <h2>🌐 Language</h2>
+    <div class="skills">
+        <span>English</span>
+        <span>Bangla</span>
+        <span>Hindi</span>
+    </div>
+</section>
+
+<footer>
+    © 2026 Mamun | Portfolio Website
+</footer>
+
+</body>
+</html>
