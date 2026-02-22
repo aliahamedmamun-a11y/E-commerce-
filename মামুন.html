@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Single File Dynamic Store</title>
+<style>
+body{margin:0;font-family:Arial;background:#f5f5f5;color:#333;}
+header{background:#222;color:white;padding:15px;display:flex;justify-content:space-between;align-items:center;}
+header h1{font-size:24px;}
+header .controls{display:flex;gap:10px;}
+header input,header select{padding:5px;border-radius:5px;border:none;}
+header button{background:#ff9800;color:white;border:none;padding:6px 12px;border-radius:5px;cursor:pointer;}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;padding:20px;}
+.card{background:white;padding:15px;border-radius:10px;box-shadow:0 2px 5px rgba(0,0,0,0.2);text-align:center;}
+.card img{width:100%;height:150px;object-fit:cover;border-radius:8px;margin-bottom:10px;}
+.card h3{margin-bottom:5px;}
+.card p{margin-bottom:5px;}
+.card button{background:#28a745;color:white;border:none;padding:6px 12px;border-radius:5px;cursor:pointer;}
+.cart-modal{position:fixed;top:0;right:-400px;width:350px;height:100%;background:white;box-shadow:-2px 0 5px rgba(0,0,0,0.3);padding:20px;transition:0.4s;overflow:auto;z-index:100;}
+.cart-modal.active{right:0;}
+.cart-item{display:flex;justify-content:space-between;margin-bottom:10px;}
+.cart-item span{margin-right:5px;}
+.cart-item button{padding:3px 6px;margin-left:3px;}
+.total{font-weight:bold;margin-top:10px;}
+.close-btn{background:red;color:white;border:none;padding:5px 10px;float:right;cursor:pointer;}
+</style>
+</head>
+<body>
+
+<header>
+<h1>🛒 Single File Store</h1>
+<div class="controls">
+<input type="text" id="search" placeholder="Search..." onkeyup="filterProducts()">
+<select id="category" onchange="filterProducts()">
+<option value="all">All</option>
+<option value="Electronics">Electronics</option>
+<option value="Fashion">Fashion</option>
+<option value="Grocery">Grocery</option>
+</select>
+<button onclick="toggleCart()">Cart (<span id="count">0</span>)</button>
+</div>
+</header>
+
+<div class="products" id="productList"></div>
+
+<div class="cart-modal" id="cart">
+<button class="close-btn" onclick="toggleCart()">X</button>
+<h3>Your Cart</h3>
+<div id="cartItems"></div>
+<div class="total">Total: ৳<span id="total">0</span></div>
+</div>
+
+<script>
+let products=[
+{name:"Smart Phone",price:15000,category:"Electronics",img:"https://via.placeholder.com/300x200"},
+{name:"Laptop",price:45000,category:"Electronics",img:"https://via.placeholder.com/300x200"},
+{name:"T-Shirt",price:700,category:"Fashion",img:"https://via.placeholder.com/300x200"},
+{name:"Rice 5kg",price:350,category:"Grocery",img:"https://via.placeholder.com/300x200"}
+];
+
+let cart=[];
+
+function displayProducts(list){
+let container=document.getElementById("productList");
+container.innerHTML="";
+list.forEach(p=>{
+container.innerHTML+=`
+<div class="card">
+<img src="${p.img}">
+<h3>${p.name}</h3>
+<p>Category: ${p.category}</p>
+<p>Price: ৳${p.price}</p>
+<button onclick="addToCart('${p.name}',${p.price})">Add to Cart</button>
+</div>`;
+});
+}
+displayProducts(products);
+
+function filterProducts(){
+let search=document.getElementById("search").value.toLowerCase();
+let category=document.getElementById("category").value;
+let filtered=products.filter(p=>{
+return (category=="all"||p.category==category) && p.name.toLowerCase().includes(search);
+});
+displayProducts(filtered);
+}
+
+function addToCart(name,price){
+let item=cart.find(i=>i.name==name);
+if(item){item.qty++;}
+else{cart.push({name,price,qty:1});}
+updateCart();
+}
+
+function updateCart(){
+let items=document.getElementById("cartItems");
+let total=0,count=0;
+items.innerHTML="";
+cart.forEach((item,index)=>{
+total+=item.price*item.qty;
+count+=item.qty;
+items.innerHTML+=`
+<div class="cart-item">
+<span>${item.name}</span>
+<span>৳${item.price} x ${item.qty}</span>
+<button onclick="changeQty(${index},-1)">-</button>
+<button onclick="changeQty(${index},1)">+</button>
+<button onclick="removeItem(${index})">X</button>
+</div>`;
+});
+document.getElementById("total").innerText=total;
+document.getElementById("count").innerText=count;
+}
+
+function changeQty(index,change){
+cart[index].qty+=change;
+if(cart[index].qty<=0) cart.splice(index,1);
+updateCart();
+}
+
+function removeItem(index){
+cart.splice(index,1);
+updateCart();
+}
+
+function toggleCart(){
+document.getElementById("cart").classList.toggle("active");
+}
+</script>
+
+</body>
+</html>
